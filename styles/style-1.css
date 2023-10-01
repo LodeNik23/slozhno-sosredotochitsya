@@ -3,47 +3,36 @@
 .page {
   /* сохраните в разметке и стилях класс page. На его основе работает скрипт. */
 
-  color: var(--main-text-color, #f1b2ce);
-  background: var(--background-image) no-repeat top center,
-    var(--background-color);
-  background-size: cover;
-  background-attachment: fixed;
-  font-family: var(--font-family), sans-serif;
+
+background: var(--background-image) no-repeat top center, var(--background-color);
+background-size: auto 768px;
+background-attachment: fixed;
+color: var(--main-text-color);
 }
 
-.pseudoblock::before {
+.decorated-zone::before {
   content: "";
   position: absolute;
-  border-left: 1px solid var(--markup-color);
-  border-bottom: 1px solid var(--markup-color);
   width: 25px;
   height: 25px;
+  border-left: 1px solid var(--corners-color);
+  border-bottom: 1px solid var(--corners-color);
   left: 20px;
   bottom: 20px;
 }
-@media (375px <= width < 768px) {
-  .pseudoblock::before {
-    left: 10px;
-    bottom: 10px;
-  }
-}
 
-.pseudoblock::after {
+.decorated-zone::after {
   content: "";
   position: absolute;
-  border-right: 1px solid var(--markup-color);
-  border-top: 1px solid var(--markup-color);
   width: 25px;
   height: 25px;
+  border-right: 1px solid var(--corners-color);
+  border-top: 1px solid var(--corners-color);
   right: 20px;
   top: 20px;
 }
-@media (375px <= width < 768px) {
-  .pseudoblock::after {
-    right: 10px;
-    top: 10px;
-  }
-}
+
+
 
 .header {
   padding: 0 20px;
@@ -56,14 +45,16 @@
   }
 }
 
-.header__rec {
-  font-family: var(--font-family);
+
+ .header__rec {
   position: absolute;
   color: var(--rec-color);
   text-transform: uppercase;
   top: 20px;
   right: 48px;
+
   line-height: 138.889%;
+  font-family: IBM Plex Mono;
 }
 
 .header__rec::after {
@@ -104,39 +95,45 @@
 
 .header__theme-menu-list {
   display: flex;
-  justify-content: center;
+ 
   gap: 10px;
+  justify-content: center;
 }
 
 @media (width < 1024px) {
   .header__theme-menu-list {
     flex-direction: column;
     align-items: flex-end;
-    gap: 13px;
   }
 } /* кнопки сверху */
+
 
 @media (375px <= width < 768px) {
   .header__theme-menu-list {
     gap: 13px;
   }
+} /* отступы между кнопками на малом */
+
+
+.header__theme-menu-item {
 }
 
 .header__theme-menu-button {
-  color: var(--rec-color);
-  text-align: center;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 100%;
-  padding: 1.5px 13px;
-  text-transform: lowercase;
-  border: transparent;
-  background: none;
-  cursor: pointer;
+color: var(--corners-color);
+text-align: center;
+font-size: 18px;
+font-weight: 400;
+line-height: 100% ;
+padding: 1.5px 13px; /* 2,5-12 */
+
+border: transparent;
+
+background: none;
+cursor: pointer;
 }
 
 .header__theme-menu-button:hover {
-  border: 1px solid var(--hover-color);
+  border: 1px solid #ff0070;
 }
 
 .header__theme-menu-button:focus {
@@ -145,33 +142,47 @@
 
 .header__theme-menu-button_active {
   border: 1px solid #ff0070;
-  pointer-events: none;
 }
 
 .header__theme-menu-button:focus-visible {
   border-bottom: 1px solid #ff0070;
 }
 
-.header__title-block {
-  padding: 276px 0 136px; /*по фигме 273 пикселя сверху и гэп 114 снизу */
+header__theme-menu-button_type_light
+header__theme-menu-button_type_auto
+header__theme-menu-button_type_dark
+
+
+
+
+.header__title-container {
   display: flex;
   flex-direction: column;
-  gap: 114px;
+  padding: 238px 0 134px;
+  
+  /* padding: 273px 0 136px;любые значения нужно ли */  
+  
+  /* gap: 55px; любые значения нужно ли*/ 
 }
 
 @media (768px <= width < 1024px) {
-  .header__title-block {
-    padding: 176px 0 184px;
-    gap: 162px;
+  .header__title-container {
+    padding: 65px 0 183 px;
+    /* padding: 173px 0 162px; */
+
+    gap: 133px; /*wfc*/
   }
 }
 
 @media (375px <= width < 768px) {
-  .header__title-block {
-    padding: 70px 0 72px;
-    gap: 55px;
+  .header__title-container {
+    padding: 70px 0 66px;
+    gap: 57px;
   }
 }
+
+
+
 
 .header__title {
   text-shadow: 4px 4px 0px var(--accent-color);
@@ -179,8 +190,8 @@
   font-weight: 700;
   font-family: "IBM Plex Mono";
   font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  /* font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem); */
   margin-left: -2%;
-  line-height: 82.5%;
 }
 
 .header__title {
@@ -191,15 +202,16 @@
   text-shadow: 4px 4px 0px var(--title-shadow);
 }
 
+
 @media (375px <= width < 1024px) {
   .header__title {
-    text-shadow: 4px 4px 0px var(--title-decor);
+    text-shadow: 4px 4px 0px var(--title-decor); /* [?] */
   }
 }
 
 @media (768px <= width < 1024px) {
   .header__title {
-    margin-left: -2.9%;
+    margin-left: -3%;
   }
 }
 
@@ -211,8 +223,10 @@
   }
 }
 
+
+
 .header__subtitle {
-  color: var(--list-title-color);
+  color: var(--article-title-color);
   align-self: flex-end;
   font-weight: 700;
   width: 50%;
@@ -224,62 +238,77 @@
   }
 }
 
-.title-decor {
-  background-color: #ff0070;
-  line-height: 130%;
-}
 
-@media (375px <= width < 1024px) {
+
+.title-decor {
+  background-color:#ff0070 
+} /* []  */
+
+
+@media (width < 1024px) and (width >= 375px) {
   .header__title {
     text-shadow: 4px 4px 0px var(--title-decor);
   }
 }
 
+
+
+
 .main {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
-  margin: 60px 0;
+  margin: 60px 0; /* нужно ли? */
   padding: 0 20px;
-  gap: 80px;
+  gap: 80 px;
 }
-
 @media (375px <= width < 768px) {
   .main {
     padding: 0 10px;
-    margin: 34px 0; /*по фигме 40px, по макету другое*/
+    margin: 40 px 0;
     gap: 50px;
   }
 }
 
 .section {
+  color: #000028;
+  font-family: IBM Plex Mono;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+
   line-height: 130%;
 }
 
 .section:nth-of-type(2) .section__title {
   width: 30%;
-}
+}/**/
 
 @media (375px <= width < 768px) {
   .section:nth-of-type(2) .section__title {
     width: 100%;
-  }
+  } /**/
 }
 
-@media (1024px <= width) {
-  .section:nth-of-type(2) .section__list {
+@media (width >= 1024px) {
+  .section:nth-of-type(2) .section__article-list {
     justify-content: space-between;
-  }
-}
+      }
+} /**/
 
 @media (375px <= width < 1024px) {
-  .section:nth-of-type(2) .section__list {
+  .section:nth-of-type(2) .section__article-list {
     gap: 20px;
   }
-}
+} /**/
+
+
+
+
 
 .section:first-of-type,
 .section:nth-of-type(3) {
+  background-color: aqua;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -287,14 +316,15 @@
 
 .section:first-of-type .section__title,
 .section:nth-of-type(3) .section__title {
+  background-color: rgb(253, 238, 25);
   flex: 0 0 auto;
-  width: 33%;
+  width: calc(100% / 3); /*33%; нужен ли отступ в расчете calc((100% - 40px) / 3)*/
 }
 
 @media (768px <= width < 1024px) {
   .section:first-of-type .section__title,
   .section:nth-of-type(3) .section__title {
-    width: 32%;
+    width: calc(100% / 3); /* calc(100%-20px / 3) */
   }
 }
 
@@ -306,6 +336,8 @@
   }
 }
 
+
+
 .section:last-of-type {
   display: grid;
 }
@@ -316,24 +348,30 @@
   margin: 0;
 }
 
-@media (768px <= width < 1024px) {
+@media (width >= 768px) {
   .section:last-of-type .section__image {
+    -o-object-fit: cover;
     object-fit: cover;
+    -o-object-position: center;
     object-position: center;
     width: 100%;
     height: 100%;
   }
 
-  .section:last-of-type .section__image:first-of-type,
-  .section:last-of-type .section__image:last-of-type {
+  .section:last-of-type .section__image:first-of-type, .section:last-of-type .section__image:last-of-type {
     grid-column: span 2;
   }
 
-  .section:last-of-type .section__image:nth-of-type(2),
-  .section:last-of-type .section__image:nth-of-type(3) {
+  .section:last-of-type .section__image:nth-of-type(2), .section:last-of-type .section__image:nth-of-type(3) {
     grid-row: span 2;
   }
+
+  /* section:last-of-type .section__image:nth-of-type(2), .section:last-of-type .section__image:nth-of-type(3), .section:last-of-type .section__image:nth-of-type(4) {
+    width: 315px; нужно ли подгонять? 
+  }*/ 
+
 }
+
 
 @media (width < 768px) {
   .section:last-of-type .section__image {
@@ -346,10 +384,10 @@
   }
 }
 
-@media (768px <= width) {
+@media (width >= 768px) {
   .section:last-of-type {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px 19px;
+     grid-template-columns: repeat(3, 1fr);
+     gap: 20px 19px; 
   }
 }
 
@@ -359,21 +397,22 @@
     flex-direction: column;
     gap: 10px;
   }
-}
+}  
 
-.section__title {
+
+
+.section__title{
   margin-bottom: 20px;
   font-size: 18px;
   font-weight: 700;
   color: var(--section-title-color);
-}
+} /* will be deleted */
 
 @media (768 <= width < 1024px) {
   .section__title {
-    width: 35%;
+    width: 35%; 
   }
 }
-
 @media (375px <= width < 768px) {
   .section__title {
     width: 100%;
@@ -381,87 +420,98 @@
   }
 }
 
-.section__list {
+
+.section__article-list {
   display: flex;
   flex-wrap: wrap;
 }
 
-.section:first-of-type .section__list,
-.section:nth-of-type(3) .section__list {
+
+.section:first-of-type .section__article-list,
+.section:nth-of-type(3) .section__article-list {
   flex: 0 0 auto;
+  width: calc((100% - 20px)/3*2); 
   flex-direction: column;
-  width: calc((100% - 40px) / 3 * 2 + 20px);
   gap: 20px;
+  background-color: blue;
 }
 
 @media (768px <= width < 1024px) {
-  .section:first-of-type .section__list,
-  .section:nth-of-type(3) .section__list {
-    width: calc((100% - 20px) / 3 * 2);
+  .section:first-of-type .section__article-list,
+  .section:nth-of-type(3) .section__article-list {
+    width: calc((100% - 20px)/3*2);
+    background-color: #696165;
   }
 }
 @media (375px <= width < 768px) {
-  .section:first-of-type .section__list,
-  .section:nth-of-type(3) .section__list {
+  .section:first-of-type .section__article-list,
+  .section:nth-of-type(3) .section__article-list {
     width: 100%;
   }
 }
 
-.section__list-title {
+
+
+.section__article-list-title {
   font-size: 18px;
-  font-weight: 700;
-  color: var(--list-title-color);
+  font-weight: 00;
+  color: var(--article-title-color);
 }
 
-.section__list-item {
+.section__article-item {
   display: flex;
   flex-direction: column;
-  line-height: 130%;
   gap: 10px;
 }
 
-.section:nth-of-type(2) .section__list-item {
+.section:nth-of-type(2) .section__article-item {
   flex: 0 0 auto;
-  width: calc((100% - 40px) / 3);
+  width: calc(100% / 3); /* calc(100%-20px / 3) or 32%*/ 
 }
 
 @media (375px <= width < 1024px) {
-  .section:nth-of-type(2) .section__list-item {
+  .section:nth-of-type(2) .section__article-item {
     flex: 1 0 auto;
     width: 100%;
   }
 }
 
-.section__list-title {
+
+
+.section__article-title {
   font-size: 18px;
   font-weight: 700;
-  color: var(--list-title-color);
+  color: var(--article-title-color);
 }
 
-.section__list-title_regular {
+.section__article-title_regular {
   font-weight: 400;
 }
 
-.picture-title {
-  color: var(--list-title-color);
-}
+.dark-title {
+  color: var(--article-title-color);
+  border: 5px solid yellow; /* will be deleted */
+} /* wfk and rename*/
 
-.section__text-link {
+
+
+.section__article-text-link {
   border: transparent;
   text-shadow: 2px 2px 0px var(--link-shadow);
 }
 
-.section__text-link:hover {
-  border-bottom: 1px solid var(--main-text-color);
+.section__article-text-link:hover {
+  border-bottom: 1px solid var(--main-text-color); /* rgba(255, 0, 112, 0.40) */
 }
 
-.section__text-link:focus {
+.section__article-text-link:focus {
   outline: none;
 }
 
-.section__text-link:focus-visible {
+.section__article-text-link:focus-visible {
   outline: 1px solid var(--main-text-color);
 }
+
 
 .section:last-of-type {
   display: grid;
@@ -473,24 +523,20 @@
   margin: 0;
 }
 
+
+
 .footer {
-  display: grid;
+  display: flex;
   width: 100%;
   height: 100vh;
-  padding-top: 285px;
-  position: relative;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  text-align: center;
-  place-items: center;
-  padding: clamp(10px, 0.0286rem + 2.5445vw, 20px);
   gap: 10px;
-}
-
-@media (375px <= width < 768px) {
-  .footer {
-    margin-top: 41px;
-    padding: 260px 0px;
-  }
+  flex-shrink: 0;
+  /* padding: 282px 20px; */
+  position: relative;
+  text-align: center;
 }
 
 .footer__title {
@@ -500,8 +546,30 @@
   text-shadow: 2px 2px 0px var(--title-shadow);
 }
 
-@media (375px <= width < 768px) {
+/* @media (375px <=  width < 1024px) {
+  .footer__title {
+    text-shadow: 2px 2px 0px var(--title-decor);
+  }
+} 
+
+@media (width < 1024px) and (width >= 768px) {
+  .footer {
+    padding: 434px 20px;
+  }
+}
+
+@media (width < 768px) and (width >= 375px) {
+  .footer {
+    margin-top: 40px;
+    padding: 262px 10px;
+  }
+}
+
+/* [] */
+
+@media (375px <=  width < 768px) {
   .footer__title {
     font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
   }
 }
+
