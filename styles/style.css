@@ -168,7 +168,7 @@
 
 @media (375px <= width < 768px) {
   .header__title-block {
-    padding: 70px 0 72px;
+    padding: 69px 0 66px;
     gap: 55px;
   }
 }
@@ -208,6 +208,7 @@
   align-self: flex-end;
   font-weight: 700;
   width: 50%;
+  line-height: 130%;
 }
 
 @media (width < 576px) {
@@ -239,7 +240,7 @@
 @media (375px <= width < 768px) {
   .main {
     padding: 0 10px;
-    margin: 34px 0; /*по фигме 40px, по макету другое*/
+    margin: 41px 0; 
     gap: 50px;
   }
 }
