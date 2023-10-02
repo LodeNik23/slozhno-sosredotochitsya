@@ -16,4 +16,6 @@
   --title-color: #db00ff;
   --main-text-color: #f1b2ce;
   --hover-color: rgba(255, 0, 112, 0.4);
+  --header__rec_visibility: visible;
 }
+
