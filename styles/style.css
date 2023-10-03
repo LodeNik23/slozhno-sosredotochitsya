@@ -51,7 +51,7 @@
   display: grid;
   grid-template-rows: 1fr min-content 1fr;
   height: 100vh;
-  min-height: 100vh;
+  min-height: 668px;
 }
 
 @media (375px <= width < 768px) {
@@ -471,7 +471,7 @@ old vertion */
   padding: clamp(10px, 0.0286rem + 2.5445vw, 20px);
   gap: 10px;
   height: 100vh;
-  min-height: 100vh;
+  min-height: 668px;
 }
 
 @media (375px <= width < 768px) {
